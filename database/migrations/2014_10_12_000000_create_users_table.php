@@ -17,8 +17,11 @@ class CreateUsersTable extends Migration
             $table->id();
             $table->string('name');
             $table->string('email')->unique();
-            $table->timestamp('email_verified_at')->nullable();
-            $table->string('password');
+            $table->string('image_path');
+            $table->string('github_id')->nullable();
+            $table->string('twitch_id')->nullable();
+            $table->string('github_username')->nullable();
+            $table->string('twitch_username')->nullable();
             $table->rememberToken();
             $table->timestamps();
         });

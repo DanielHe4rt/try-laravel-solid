@@ -21,6 +21,11 @@ class User extends Authenticatable
         'name',
         'email',
         'password',
+        'github_id',
+        'twitch_id',
+        'github_username',
+        'twitch_username',
+        'image_path'
     ];
 
     /**
