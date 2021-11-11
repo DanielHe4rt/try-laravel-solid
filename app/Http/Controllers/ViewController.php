@@ -18,4 +18,9 @@ class ViewController extends Controller
     {
         return view('dashboard');
     }
+
+    public function viewProfile()
+    {
+        return view('profile');
+    }
 }

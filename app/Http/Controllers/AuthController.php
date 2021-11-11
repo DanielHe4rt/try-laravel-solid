@@ -62,7 +62,7 @@ class AuthController extends Controller
         if ($user = User::where('email', $payload['email'])->first()) {
             $user->update([
                 $provider . "_id" => $payload[$provider . '_id'],
-                $provider . "_username" => $payload['login']
+                $provider . "_username" => $payload[$provider . '_username']
             ]);
 
             return $user;

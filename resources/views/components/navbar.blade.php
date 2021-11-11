@@ -26,7 +26,7 @@
                         <a class="nav-link">Hey, {{ auth()->user()->name }}</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link">Profile</a>
+                        <a class="nav-link {{ Request::is('profile') ? 'active' : '' }}" href="{{ route('profile') }}">Profile</a>
                     </li>
                     <li class="nav-item">
                         <a href="{{ route('logout') }}" class="nav-link">Logout</a>

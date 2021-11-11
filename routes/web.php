@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\AuthController;
+use App\Http\Controllers\MeController;
 use App\Http\Controllers\ViewController;
 use Illuminate\Support\Facades\Route;
 
@@ -19,6 +20,7 @@ use Illuminate\Support\Facades\Route;
 
 Route::get('/', [ViewController::class, 'viewLanding'])->name('landing');
 Route::get('/dashboard', [ViewController::class, 'viewDashboard'])->name('dashboard');
+Route::get('/profile', [ViewController::class, 'viewProfile'])->name('profile');
 
 
 // Action Routes
@@ -26,3 +28,6 @@ Route::get('/dashboard', [ViewController::class, 'viewDashboard'])->name('dashbo
 Route::get('/auth/oauth/twitch', [AuthController::class, 'getTwitchProvider']);
 Route::get('/auth/oauth/github', [AuthController::class, 'getGithubProvider']);
 Route::get('/auth/logout', [AuthController::class, 'getLogout'])->name('logout');
+
+Route::post('/me/update-avatar', [MeController::class, 'postProfileAvatar'])->name('update-avatar');
+Route::delete('/me', [MeController::class, 'deleteMe'])->name('delete-account');
