@@ -1,65 +1,67 @@
 <p align="center"><a href="https://laravel.com" target="_blank"><img src="https://raw.githubusercontent.com/laravel/art/master/logo-lockup/5%20SVG/2%20CMYK/1%20Full%20Color/laravel-logolockup-cmyk-red.svg" width="400"></a></p>
+<h1 align="center">Try Laravel SOLID </h1>
 
-<p align="center">
-<a href="https://travis-ci.org/laravel/framework"><img src="https://travis-ci.org/laravel/framework.svg" alt="Build Status"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/dt/laravel/framework" alt="Total Downloads"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/v/laravel/framework" alt="Latest Stable Version"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/l/laravel/framework" alt="License"></a>
-</p>
+## About the Project
 
-## About Laravel
+The idea is to you get an application made without worrying about SOLID principles and apply it. The theory is really nice, but you will not really understand until you code it. 
 
-Laravel is a web application framework with expressive, elegant syntax. We believe development must be an enjoyable and creative experience to be truly fulfilling. Laravel takes the pain out of development by easing common tasks used in many web projects, such as:
+The SOLID Principles exists to make code more readable and maintainable. All the content you need to make it happen you can find [here.](https://github.com/danielhe4rt/solid4noobs)
+## Expectations
 
-- [Simple, fast routing engine](https://laravel.com/docs/routing).
-- [Powerful dependency injection container](https://laravel.com/docs/container).
-- Multiple back-ends for [session](https://laravel.com/docs/session) and [cache](https://laravel.com/docs/cache) storage.
-- Expressive, intuitive [database ORM](https://laravel.com/docs/eloquent).
-- Database agnostic [schema migrations](https://laravel.com/docs/migrations).
-- [Robust background job processing](https://laravel.com/docs/queues).
-- [Real-time event broadcasting](https://laravel.com/docs/broadcasting).
+Fork the project and try to run it on your machine and your goal is to focus on the tasks above:
 
-Laravel is accessible, powerful, and provides tools required for large, robust applications.
+- Apply the Open Closed Principle on Services (Github and Twitch) without break it.
+- Apply Single Responsibility mostly on Controllers and Repositories (that not exist yet, so you have to create it).
+- Apply Liskov Substitution Principle on the methods that return specific data and make it a pattern.
+- Apply Interface Segregation Principle on Services that doesn't use all methods.
+- Find a place to implement Dependency Inversion after make all the major modifications on the code.
 
-## Learning Laravel
+If you want to worry about Clean Code here is some tips:
 
-Laravel has the most extensive and thorough [documentation](https://laravel.com/docs) and video tutorial library of all modern web application frameworks, making it a breeze to get started with the framework.
+- Know the difference between single and double quotes.
+- Use "Early Return" on methods.
+- Look to type every function/method on the entire project.
+- Create a new config file to store credentials and NEVER use env() function directly on the code
+- Use this new config file to generate the Sign-In buttons and leave an active flag for each provider as a Feature Flip.  
+## Running the Project
+1. Clone the repository using this command:
+```terminal
+$ git clone https://github.com/DanielHe4rt/try-laravel-solid.git
+```
+2. Access the project folder on your terminal:
+```terminal
+$ cd try-laravel-solid
+```
+3. Run the command to install all dependencies with Composer.
+```terminal
+$ composer install
+```
 
-If you don't feel like reading, [Laracasts](https://laracasts.com) can help. Laracasts contains over 1500 video tutorials on a range of topics including Laravel, modern PHP, unit testing, and JavaScript. Boost your skills by digging into our comprehensive video library.
+4. Copy the .env.example config to a new file called .env
+```terminal
+$ cp .env.example .env
+```
 
-## Laravel Sponsors
+5. Change the database environment variables on .env:
+    * **DB_DATABASE**: Database that you created for the project.
+    * **DB_USERNAME**: MySQL username.
+    * **DB_PASSWORD**: MySQL password.
+```
+DB_DATABASE=dev_solid
+DB_USERNAME=root
+DB_PASSWORD=root
+```
+5. Active the folder sync and let public the user avatars
+```terminal
+$ php artisan storage:link
+```
 
-We would like to extend our thanks to the following sponsors for funding Laravel development. If you are interested in becoming a sponsor, please visit the Laravel [Patreon page](https://patreon.com/taylorotwell).
+6. Run the application
+```terminal
+$ php artisan serve
+```
 
-### Premium Partners
-
-- **[Vehikl](https://vehikl.com/)**
-- **[Tighten Co.](https://tighten.co)**
-- **[Kirschbaum Development Group](https://kirschbaumdevelopment.com)**
-- **[64 Robots](https://64robots.com)**
-- **[Cubet Techno Labs](https://cubettech.com)**
-- **[Cyber-Duck](https://cyber-duck.co.uk)**
-- **[Many](https://www.many.co.uk)**
-- **[Webdock, Fast VPS Hosting](https://www.webdock.io/en)**
-- **[DevSquad](https://devsquad.com)**
-- **[Curotec](https://www.curotec.com/services/technologies/laravel/)**
-- **[OP.GG](https://op.gg)**
-- **[CMS Max](https://www.cmsmax.com/)**
-- **[WebReinvent](https://webreinvent.com/?utm_source=laravel&utm_medium=github&utm_campaign=patreon-sponsors)**
-- **[Lendio](https://lendio.com)**
-- **[Romega Software](https://romegasoftware.com)**
-
-## Contributing
-
-Thank you for considering contributing to the Laravel framework! The contribution guide can be found in the [Laravel documentation](https://laravel.com/docs/contributions).
-
-## Code of Conduct
-
-In order to ensure that the Laravel community is welcoming to all, please review and abide by the [Code of Conduct](https://laravel.com/docs/contributions#code-of-conduct).
-
-## Security Vulnerabilities
-
-If you discover a security vulnerability within Laravel, please send an e-mail to Taylor Otwell via [taylor@laravel.com](mailto:taylor@laravel.com). All security vulnerabilities will be promptly addressed.
+## Getting the Providers
 
 ## License
 
