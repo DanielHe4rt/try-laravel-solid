@@ -22,7 +22,10 @@ If you want to worry about Clean Code here is some tips:
 - Use "Early Return" on methods.
 - Look to type every function/method on the entire project.
 - Create a new config file to store credentials and NEVER use env() function directly on the code
-- Use this new config file to generate the Sign-In buttons and leave an active flag for each provider as a Feature Flip.  
+- Use this new config file to generate the Sign-In buttons and leave an active flag for each provider as a Feature Flip.
+
+After you finish it, open a pull request on <strong> your fork </strong> and tag me for a code review.
+
 ## Running the Project
 1. Clone the repository using this command:
 ```terminal
@@ -46,7 +49,7 @@ $ cp .env.example .env
     * **DB_DATABASE**: Database that you created for the project.
     * **DB_USERNAME**: MySQL username.
     * **DB_PASSWORD**: MySQL password.
-```
+```dotenv
 DB_DATABASE=dev_solid
 DB_USERNAME=root
 DB_PASSWORD=root
@@ -62,6 +65,28 @@ $ php artisan serve
 ```
 
 ## Getting the Providers
+
+For this application you will need two base providers, that will be [Github](https://github.com/settings/apps) and [Twitch](https://dev.twitch.tv/console).
+
+Create a new application on both providers and fill the callback urls same as the .env variables:
+
+```
+Github => "http://localhost:8000/auth/oauth/github"
+Twitch => "http://localhost:8000/auth/oauth/twitch"
+```
+
+After that, replace the ID and Secret on envs providers:
+
+```dotenv
+GITHUB_OAUTH_ID="Iv1.your-github-app-id"
+GITHUB_OAUTH_SECRET="your-github-secret"
+
+TWITCH_OAUTH_ID="your-twitch-app-id"
+TWITCH_OAUTH_SECRET="your-twitch-secret"
+```
+
+Doing the replacement you should be able to authenticate on the platform.
+
 
 ## License
 
