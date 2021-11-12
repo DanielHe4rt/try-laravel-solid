@@ -22,7 +22,7 @@
                 <div class="col-6" >
                     <h2>Expected results</h2>
                     <ol>
-                        <li>Apply the <a href="https://github.com/danielhe4rt/solid4noobs">SOLID principles</a> into the back-end code (and the front-end with you want).</li>
+                        <li>Apply the <a href="https://github.com/danielhe4rt/solid4noobs">SOLID principles</a> into the back-end code (and the front-end if you wish).</li>
                         <li>User can send a global message or to a specific person that not necessarily needs to be registered yet</li>
                         <li>Messages have to emphasis in global/private on the front-end with a timeline.</li>
                     </ol>
@@ -38,11 +38,11 @@
             <div class="row">
                 <div class="col-6">
                     <h3> <i class="fas fa-users"></i> Users registered</h3>
-                    <span class="badge bg-primary text-center">10</span>
+                    <span class="badge bg-primary text-center">{{ $registeredUsers }}</span>
                 </div>
                 <div class="col-6">
                     <h3> <i class="fas fa-envelope"></i>Messages sent</h3>
-                    <span class="badge bg-primary text-center">10</span>
+                    <span class="badge bg-primary text-center">{{ $messagesSent }}</span>
                 </div>
             </div>
         </div>
@@ -51,13 +51,19 @@
 
     <h3 class="text-center mb-3">Last users</h3>
     <div class="row">
-        @foreach(range(0, 3) as $idk)
+        @foreach($users as $user)
         <div class="col-3">
             <p class="text-center">
-                <img class="img-thumbnail" width="150" src="https://placehold.it/300x300" alt=""> <br>
-                danielhe4rt <br>
-                <i class="fab fa-twitch"></i>
-                <i class="fab fa-github"></i>
+                <img class="img-thumbnail" width="150" src="{{ asset('storage/' . $user->image_path) }}" alt="" style="border-radius: 100%;"> <br>
+                {{ $user->name }} <br>
+                @if($user->github_id)
+                    <i class="fab fa-github"></i>
+                @endif
+
+                @if($user->twitch_id)
+                    <i class="fab fa-twitch"></i>
+
+                @endif
             </p>
         </div>
         @endforeach

@@ -4,7 +4,7 @@
 
 @section('content')
     <div class="row justify-content-center">
-        <div class="col-12 col-md-8">
+        <div class="col-12 col-md-8 col-sm-12 ">
             <h2 class="text-center m-5"> User Profile</h2>
             <div class="card border-primary">
                 <div class="card-header">
@@ -14,19 +14,19 @@
                     <div class="card-header card-header-icon card-header-rose">
                         <div class="card-avatar text-center">
                             <img id="profile-img" class="img-thumbnail img-profile border-primary" style="border: 1px solid; border-radius: 100%; max-width: 300px; max-height:300px;" src="{{ asset('storage/' . auth()->user()->image_path) }}"><br>
-                            <label for="inputProfilePic" class="btn btn-primary mt-4 mb-2" style="top: -45px;">Trocar Avatar</label>
+                            <label for="inputProfilePic" class="btn btn-primary mt-4 mb-2" style="top: -45px;">{{ __('Change Avatar') }}</label>
                         </div>
                         <input id="inputProfilePic" type="file" name="image" style="display: none;">
                     </div>
                     <div class="row mb-4">
-                        <div class="col-12 col-md-6">
+                        <div class="col-12 col-md-6 col-sm-6">
                             <div class="form-group">
                                 <label class="bmd-label-floating">{{ __('Main Username') }}</label>
                                 <input type="text" class="form-control" name="name" value="{{ auth()->user()->name }}" >
                                 <small id="emailHelp" class="form-text text-muted">Your main username on this social network</small>
                             </div>
                         </div>
-                        <div class="col-12 col-md-6">
+                        <div class="col-12 col-md-6 col-sm-6">
                             <div class="form-group">
                                 <label class="bmd-label-floating">{{ __('E-mail') }}</label>
                                 <input type="text" class="form-control" name="name" value="{{ auth()->user()->email }}">
@@ -35,13 +35,13 @@
                         </div>
                     </div>
                     <div class="row mb-4">
-                        <div class="col-12 col-md-6">
+                        <div class="col-12 col-md-6 col-sm-6">
                             <div class="form-group">
                                 <label class="bmd-label-floating">{{ __('Github Username') }}</label>
                                 <input type="text" class="form-control" name="name" value="{{ auth()->user()->github_username ?? 'Not integrated' }}" disabled>
                             </div>
                         </div>
-                        <div class="col-12 col-md-6">
+                        <div class="col-12 col-md-6 col-sm-6">
                             <div class="form-group">
                                 <label class="bmd-label-floating">{{ __('Github ID') }}</label>
                                 <input type="text" class="form-control" name="name" value="{{ auth()->user()->github_id ?? 'Not integrated' }}" disabled>
@@ -49,13 +49,13 @@
                         </div>
                     </div>
                     <div class="row mb-4">
-                        <div class="col-12 col-md-6">
+                        <div class="col-12 col-md-6 col-sm-6">
                             <div class="form-group">
                                 <label class="bmd-label-floating">{{ __('Twitch Username') }}</label>
                                 <input type="text" class="form-control" name="name" value="{{ auth()->user()->twitch_username ?? 'Not integrated' }}" disabled>
                             </div>
                         </div>
-                        <div class="col-12 col-md-6">
+                        <div class="col-12 col-md-6 col-sm-6">
                             <div class="form-group">
                                 <label class="bmd-label-floating">{{ __('Twitch ID') }}</label>
                                 <input type="text" class="form-control" name="name" value="{{ auth()->user()->twitch_id ?? 'Not integrated' }}" disabled>

@@ -2,6 +2,9 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Message;
+use App\Models\User;
+
 class ViewController extends Controller
 {
     public function __construct()
@@ -11,12 +14,21 @@ class ViewController extends Controller
 
     public function viewLanding()
     {
-        return view('welcome');
+        $users = User::orderByDesc('created_at')->paginate(4);
+        $registeredUsers = User::count();
+        $messagesSent = Message::count();
+
+        return view('welcome', compact(['users', 'registeredUsers', 'messagesSent']));
     }
 
     public function viewDashboard()
     {
-        return view('dashboard');
+        $messages = Message::orderByDesc('created_at')
+            ->where('is_private', false)
+            ->orWhere('receiver_username', '=', auth()->user()->github_username)
+            ->orWhere('user_id', auth()->user()->id)
+            ->paginate(15);
+        return view('dashboard', compact('messages'));
     }
 
     public function viewProfile()
