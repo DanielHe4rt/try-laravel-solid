@@ -28,8 +28,14 @@
                 <div class="modal-body">
                     <p class="text-center">Select your favorite provider to join this wonderful application</p>
                     <div class="d-grid gap-2">
-                        <a href="https://github.com/login/oauth/authorize?client_id={{env('GITHUB_OAUTH_ID')}}&redirect_uri={{env('GITHUB_REDIRECT_URI')}}&scopes={{env('GITHUB_OAUTH_SCOPES')}}" class="btn btn-primary"><i class="fab fa-github  mr-5"></i> Sign in with Github</a>
-                        <a href="https://id.twitch.tv/oauth2/authorize?client_id={{env('TWITCH_OAUTH_ID')}}&redirect_uri={{env('TWITCH_REDIRECT_URI')}}&response_type=code&scope={{env('TWITCH_OAUTH_SCOPES')}}" class="btn btn-purple"><i class="fab fa-twitch  mr-5"></i> Sign in with Twitch</a>
+                        @foreach (Config::get('providers') as $provider) 
+                            @if (!$provider['enabled'])
+                                @continue
+                            @endif
+
+                            <a href="{{ $provider['base_uri'] }}/authorize?client_id={{ $provider['client_id'] }}&redirect_uri={{ $provider['redirect_uri'] }}&scope={{ $provider['scope'] }}&response_type=code" class="btn btn-purple"><i class="fab fa-{{ strtolower($provider['name']) }}"></i> Sign in with {{ $provider['name'] }} </a>
+                        @endforeach
+
                     </div>
                 </div>
             </div>

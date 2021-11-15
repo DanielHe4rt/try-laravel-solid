@@ -64,6 +64,11 @@
                     <i class="fab fa-twitch"></i>
 
                 @endif
+
+                @if($user->discord_id)
+                    <i class="fab fa-discord"></i>
+
+                @endif
             </p>
         </div>
         @endforeach

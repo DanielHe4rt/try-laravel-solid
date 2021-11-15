@@ -23,8 +23,10 @@ class User extends Authenticatable
         'password',
         'github_id',
         'twitch_id',
+        'discord_id',
         'github_username',
         'twitch_username',
+        'discord_username',
         'image_path'
     ];
 

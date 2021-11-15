@@ -2,44 +2,27 @@
 
 namespace App\Http\Controllers;
 
-use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Auth;
-use Illuminate\Support\Facades\Storage;
-use Ramsey\Uuid\Uuid;
+use App\Http\Requests\PostAvatarRequest;
+use App\Repositories\MeRepository;
 
 class MeController extends Controller
 {
-    public function __construct()
+    public function __construct(MeRepository $repository)
     {
         $this->middleware('auth');
+        $this->_repository = $repository;
     }
 
-    public function postProfileAvatar(Request $request)
+    public function postProfileAvatar(PostAvatarRequest $request)
     {
-        $this->validate($request, [
-            'image' => 'required|image'
-        ]);
-
-        $file = $request->file('image');
-
-        $imageName = Uuid::uuid4()->toString() . '.' . $file->getClientOriginalExtension();
-        $file->storePubliclyAs('public/avatars', $imageName);
-
-        Storage::delete('public/' . Auth::user()->image_path);
-
-        $imagePath = 'avatars/' . $imageName;
-
-        Auth::user()->update([
-            'image_path' => $imagePath
-        ]);
+        $this->_repository->postAvatar($request->file('image'));
 
         return response()->json([], 200);
     }
 
     public function deleteMe()
     {
-        Auth::user()->delete();
-        Auth::logout();
+        $this->_repository->delete();     
 
         return redirect('/');
     }

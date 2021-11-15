@@ -2,27 +2,25 @@
 
 namespace App\Http\Controllers;
 
-use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Auth;
+use App\Http\Requests\CreateMessageRequest;
+use App\Repositories\MessageRepository;
+use Exception;
 
 class MessagesController extends Controller
 {
-    public function __construct()
+    public function __construct(MessageRepository $repository)
     {
         $this->middleware('auth');
+        $this->_repository = $repository;
     }
 
-    public function postMessage(Request $request)
+    public function postMessage(CreateMessageRequest $request)
     {
-        $fields = $this->validate($request, [
-            'content' => 'required',
-            'receiver_username' => 'string|nullable'
-        ]);
-
-        $fields['is_private'] = (bool) $request->input('is_private');
-        $fields['receiver_username'] = strtolower($fields['receiver_username']);
-
-        Auth::user()->messages()->create($fields);
+        try {
+            $this->_repository->createMessage($request->validated());
+        } catch (Exception $e) {
+            return back()->withErrors($e->getMessage());
+        }
 
         return back();
     }
