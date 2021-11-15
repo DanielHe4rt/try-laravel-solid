@@ -26,8 +26,7 @@ Route::get('/profile', [ViewController::class, 'viewProfile'])->name('profile');
 
 // Auth Routes
 
-Route::get('/auth/oauth/twitch', [AuthController::class, 'getTwitchProvider']);
-Route::get('/auth/oauth/github', [AuthController::class, 'getGithubProvider']);
+Route::get('/auth/oauth/{provider}', [AuthController::class, 'auth']);
 Route::get('/auth/logout', [AuthController::class, 'getLogout'])->name('logout');
 
 // User Routes

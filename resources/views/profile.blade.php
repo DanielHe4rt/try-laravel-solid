@@ -62,6 +62,20 @@
                             </div>
                         </div>
                     </div>
+                    <div class="row mb-4">
+                        <div class="col-12 col-md-6 col-sm-6">
+                            <div class="form-group">
+                                <label class="bmd-label-floating">{{ __('Discord Username') }}</label>
+                                <input type="text" class="form-control" name="name" value="{{ auth()->user()->discord_username ?? 'Not integrated' }}" disabled>
+                            </div>
+                        </div>
+                        <div class="col-12 col-md-6 col-sm-6">
+                            <div class="form-group">
+                                <label class="bmd-label-floating">{{ __('Discord ID') }}</label>
+                                <input type="text" class="form-control" name="name" value="{{ auth()->user()->discord_id ?? 'Not integrated' }}" disabled>
+                            </div>
+                        </div>
+                    </div>
                     <form method="POST" action="{{ route('delete-account') }}">
                         @csrf
                         @method('DELETE')

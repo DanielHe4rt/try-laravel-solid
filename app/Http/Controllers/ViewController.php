@@ -2,32 +2,27 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Message;
-use App\Models\User;
+use App\Repositories\ViewRepository;
 
 class ViewController extends Controller
 {
-    public function __construct()
+    public function __construct(ViewRepository $repository)
     {
         $this->middleware('auth:web', ['except' => 'viewLanding']);
+        $this->_repository = $repository;
     }
 
     public function viewLanding()
     {
-        $users = User::orderByDesc('created_at')->paginate(4);
-        $registeredUsers = User::count();
-        $messagesSent = Message::count();
+        [ $users, $registeredUsers, $messagesSent ] = $this->_repository->getLandingContent();
 
         return view('welcome', compact(['users', 'registeredUsers', 'messagesSent']));
     }
 
     public function viewDashboard()
     {
-        $messages = Message::orderByDesc('created_at')
-            ->where('is_private', false)
-            ->orWhere('receiver_username', '=', auth()->user()->github_username)
-            ->orWhere('user_id', auth()->user()->id)
-            ->paginate(15);
+        [ $messages ] = $this->_repository->getDashboardContent();
+
         return view('dashboard', compact('messages'));
     }
 
